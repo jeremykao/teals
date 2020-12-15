@@ -4,6 +4,7 @@ $greeting = document.querySelector('.greeting');
 $buttonContainer = document.querySelector('.button-container');
 $reset = document.querySelector('.reset');
 $start = document.querySelector('.start');
+$snowflakes = document.querySelector('.snowflakes');
 
 function sendMessage(apiMethod, params = []) {
   $snapAnimation.contentWindow.postMessage(
@@ -51,9 +52,12 @@ $present.addEventListener('click', function(e) {
     $present.classList.add('hidden');
     $present.classList.remove('visible');
 
+    $snowflakes.classList.add('visible');
+    $snowflakes.classList.remove('hidden');
+
     console.log('Starting Snap!');
-    $snapAnimation.classList.remove('hidden');
     $snapAnimation.classList.add('visible');
+    $snapAnimation.classList.remove('hidden');
 
     setTimeout(function() {
       startSnap();
