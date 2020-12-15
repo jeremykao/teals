@@ -7,20 +7,27 @@
       body {
         font-family: 'Roboto', sans-serif;
       }
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group label {
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
     <h1>Fill out this to generate a holiday card!</h1>
     <form class="form-container">
-      <div>
+      <div class="form-group">
         <label for="snap-url-input">Snap Url: </label>
         <input id="snap-url-input" type="text" name="snapUrl" />
       </div>
-      <div>
+      <div class="form-group">
         <label for="name-input">Your Name: </label>
         <input id="name-input" type="text" name="from" />
       </div>
-      <div>
+      <div class="form-group">
         <label for="recipient-name-input">Name of Recipient: </label>
         <input id="recipient-name-input" type="text" name="to" />
       </div>

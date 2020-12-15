@@ -60,7 +60,7 @@ $present.addEventListener('click', function(e) {
       $buttonContainer.classList.add('visible');
       $buttonContainer.classList.remove('hidden');
     }, 3000);
-  }, 3000);
+  }, 2000);
 });
 
 function getQueryParam(qp) {
