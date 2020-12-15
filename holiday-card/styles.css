@@ -34,15 +34,15 @@ body {
   margin-bottom: 5vw;
 }
 
-.reset {
-
+.button-container {
+  display: flex;
+  margin-top: 30px;
 }
-
-.reset.hidden {
+.button-container.hidden {
   display: none;
 }
 
-.reset.visible {
+.button-container.visible {
   display: block;
 }
 

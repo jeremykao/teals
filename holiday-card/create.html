@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fill out this to generate a holiday card!</h1>
+    <form class="form-container">
+      <div>
+        <label for="snap-url-input">Snap Url: </label>
+        <input id="snap-url-input" type="text" name="snapUrl" />
+      </div>
+      <div>
+        <label for="name-input">Your Name: </label>
+        <input id="name-input" type="text" name="from" />
+      </div>
+      <div>
+        <label for="recipient-name-input">Name of Recipient: </label>
+        <input id="recipient-name-input" type="text" name="to" />
+      </div>
+    </form>
+    <h3>
+      <span>Send this to your friends!</span>
+      <a href="" class="destinationUrl" target="_blank"></a>
+    </h3>
+    <script>
+      $snapUrlInput = document.querySelector('#snap-url-input');
+      $nameInput = document.querySelector('#name-input');
+      $recipientInput = document.querySelector('#recipient-name-input');
+      $urlContainer = document.querySelector('.destinationUrl');
+      document.querySelector('.form-container').addEventListener('change', function(e) {
+        if (e && e.target && e.target.value) {
+          const baseUrl = 'https://jeremykao.github.io/teals/holiday-card/index.html';
+          const queryParams = [$snapUrlInput, $nameInput, $recipientInput].map((input) => {
+            if (input.value) {
+              return `${input.name}=${encodeURIComponent(input.value)}`;
+            }
+            return '';
+          }).filter((queryStr) => !!queryStr);
+
+          const finalUrl = `${baseUrl}?${queryParams.join('&')}`;
+          $urlContainer.textContent = finalUrl;
+          $urlContainer.href = finalUrl;
+        }
+      });
+    </script>
+  </body>
+</html>

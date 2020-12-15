@@ -1,7 +1,9 @@
 $present = document.querySelector('.present');
 $snapAnimation = document.querySelector('#snap-animation');
 $greeting = document.querySelector('.greeting');
+$buttonContainer = document.querySelector('.button-container');
 $reset = document.querySelector('.reset');
+$start = document.querySelector('.start');
 
 function sendMessage(apiMethod, params = []) {
   $snapAnimation.contentWindow.postMessage(
@@ -16,18 +18,21 @@ function startSnap() {
 }
 
 function start() {
-  const snapUrl = getQueryParam('snapUrl').replace('&editMode=true', '').replace('&editMode', '');
+  const snapUrl = getQueryParam('snapUrl');
   const fromStr = getQueryParam('from');
   const toStr = getQueryParam('to');
-  $snapAnimation.src = snapUrl + '&noRun&hideControls';
+  if (snapUrl){
+    $snapAnimation.src = snapUrl.replace('&editMode=true', '').replace('&editMode', '') + '&noRun&hideControls';
+  }
 
   let message = "You got a present";
   if (fromStr) {
-    message += 'from ' + fromStr;
+    message += ' from ' + fromStr;
   }
   if (toStr) {
     message = 'Hey ' + toStr + ', ' + message;
   }
+  message += '!';
   $greeting.textContent = message;
 }
 
@@ -35,25 +40,26 @@ start();
 $reset.addEventListener('click', function() {
   window.location.reload();
 });
+$start.addEventListener('click', function() {
+  startSnap()
+});
 
 $present.classList.add('visible');
-$present.addEventListener('touchend', function(e) {
-  console.log('Hiding gift, Showing snap!');
-  this.classList.add('hidden');
-  this.classList.remove('visible');
-
-  $snapAnimation.classList.remove('hidden');
-  $snapAnimation.classList.add('visible');
-
+$present.addEventListener('click', function(e) {
   setTimeout(function() {
+    console.log('Hiding gift, Showing snap!');
+    $present.classList.add('hidden');
+    $present.classList.remove('visible');
+
     console.log('Starting Snap!');
+    $snapAnimation.classList.remove('hidden');
+    $snapAnimation.classList.add('visible');
     startSnap();
-  }, 1000);
 
-  setTimeout(function() {
-    console.log('Showing Reset button');
-    $reset.classList.add('visible');
-    $reset.classList.remove('hidden');
+    setTimeout(function() {
+      $buttonContainer.classList.add('visible');
+      $buttonContainer.classList.remove('hidden');
+    }, 3000);
   }, 3000);
 });
 
