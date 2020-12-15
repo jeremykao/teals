@@ -54,7 +54,10 @@ $present.addEventListener('click', function(e) {
     console.log('Starting Snap!');
     $snapAnimation.classList.remove('hidden');
     $snapAnimation.classList.add('visible');
-    startSnap();
+
+    setTimeout(function() {
+      startSnap();
+    }, 1000);
 
     setTimeout(function() {
       $buttonContainer.classList.add('visible');
